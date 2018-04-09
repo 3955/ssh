@@ -1,5 +1,4 @@
-
-
+aclacl payload dstdomain -i "/etc/squid/payload.txt"
 htthttp_access allow SSH
 http_access allow manager localhost
 http_access deny manager
