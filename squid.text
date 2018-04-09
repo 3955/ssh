@@ -1,4 +1,5 @@
-acl payload dstdomain "/etc/squid/payload.txt"
+aclacl payload dstdomain -i"/etc/squid/payload.txt"
+
 http_access อนุญาต SSH
 http_access อนุญาตให้ localhost ผู้จัดการ
 http_access ปฏิเสธผู้จัดการ
