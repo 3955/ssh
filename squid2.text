@@ -1,5 +1,4 @@
 aclacl payload dstdomain -i "/etc/squid3/payload.txt"
-
 http_access allow SSH
 http_access allow manager localhost
 http_access deny manager
