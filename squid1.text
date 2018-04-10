@@ -1,14 +1,32 @@
-acl localhost src 127.0.0.1/32 ::1
-acl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1
-acl SSL_ports port 443
-acl Safe_ports port 80
-acl Safe_ports port 21
-acl Safe_ports port 443
-acl Safe_ports port 70
-acl Safe_ports port 210
-acl Safe_ports port 1025-65535
-acl Safe_ports port 280
-acl Safe_ports port 488
-acl Safe_ports port 591
-acl Safe_ports port 777
-acl CONNECT method CONNECT
+acl payload dstdomain -i "/etc/payloads"
+acl local dstdomain localhost
+acl iplocal dstdomain 127.0.0.1
+acl netflix dstdomain .netflix.
+acl redelocal src 192.168.0.1-192.168.0.254
+acl vpn src 10.8.0.1-10.8.0.254
+acl videoprime dstdomain .videoprime.
+acl ip4 dstdomain 127.0.0.2
+acl oi dstdomain 200.222.108.241
+
+http_access allow ip
+http_access allow payload
+http_access allow local
+http_access allow iplocal
+http_access allow redelocal
+http_access allow vpn
+http_access allow ip4
+http_access allow oi
+http_access allow netflix
+http_access allow videoprime
+
+http_port 80
+http_port 8080
+http_port 8000
+http_port 3128
+
+visible_hostname BANK
+
+http_access deny all
+
+via off
+forwarded_for off
